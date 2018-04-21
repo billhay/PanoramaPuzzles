@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2011
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanoramaPuzzle10", "PanoramaPuzzle10\PanoramaPuzzle10.csproj", "{88F8F5B6-5C58-45D2-97E5-03E62C01E122}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88F8F5B6-5C58-45D2-97E5-03E62C01E122}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88F8F5B6-5C58-45D2-97E5-03E62C01E122}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88F8F5B6-5C58-45D2-97E5-03E62C01E122}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88F8F5B6-5C58-45D2-97E5-03E62C01E122}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32F5F7F0-479A-4CE3-8A8C-D3D80D4879D5}
+	EndGlobalSection
+EndGlobal
