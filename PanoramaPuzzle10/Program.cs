@@ -10,14 +10,10 @@
         {
             IRule rules = new Rules();
             List<Person> selected = Person.GetAllCombinations(rules.IsValid).ToList();
-
-            for(int i = 0; i < selected.Count -3; i++)            
-            for(int j = i + 1; j < selected.Count -2; j++)
-            for(int k = j + 1; k < selected.Count -1; k++)
-            for(int l = k + 1; l < selected.Count; l++)
+            var all = selected.Combinations(4);
+            foreach (var combination in all)
             {
-                List<Person> people = new List<Person>(new[] { selected[i], selected[j], selected[k], selected[l] });
-
+                ISet<Person> people = combination.ToHashSet();
                 if (IsValid(people))
                 {
                     foreach (Person p in people)
@@ -33,10 +29,9 @@
 
         // This filters out any putative solution where two people
         // share an attribute, like two people each with black shoes
-        static bool IsValid(IList<Person> people)
+        static bool IsValid(ISet<Person> people)
         {
-            HashSet<Person> persons = new HashSet<Person>(people);
-            if (persons.Count != 4)
+            if (people.Count != 4)
             {
                 return false;
             }
