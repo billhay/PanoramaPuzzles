@@ -21,20 +21,26 @@ namespace PanoramaPuzzle10
 
         public Shoes Shoes { get; set; }
 
-        public static IEnumerable<Person> GetAllCombinations()
+        public static IEnumerable<Person> GetAllCombinations(Func<Person, bool> isValid)
         {
             foreach (FirstName firstName in Enum.GetValues(typeof(FirstName)))
             foreach (LastName lastName in Enum.GetValues(typeof(LastName)))
             foreach (Jacket jacket in Enum.GetValues(typeof(Jacket)))
             foreach (Shoes shoes in Enum.GetValues(typeof(Shoes)))
             {
-                yield return new Person
+
+                Person p= new Person
                 {
                     FirstName = firstName,
                     LastName = lastName,
                     Jacket = jacket,
                     Shoes = shoes
                 };
+
+                if (isValid(p))
+                {
+                    yield return p;
+                }
             }
         }
 
