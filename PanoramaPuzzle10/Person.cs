@@ -10,6 +10,7 @@ namespace PanoramaPuzzle10
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class Person
     {
@@ -21,26 +22,23 @@ namespace PanoramaPuzzle10
 
         public Shoes Shoes { get; set; }
 
-        public static IEnumerable<Person> GetAllCombinations(Func<Person, bool> isValid)
+        public static IEnumerable<Person> AllCombinations(Func<Person, bool> isValid)
         {
-            foreach (FirstName firstName in Enum.GetValues(typeof(FirstName)))
-            foreach (LastName lastName in Enum.GetValues(typeof(LastName)))
-            foreach (Jacket jacket in Enum.GetValues(typeof(Jacket)))
-            foreach (Shoes shoes in Enum.GetValues(typeof(Shoes)))
+            return
+                GetAllEnums<FirstName>().Select(f =>
+                        GetAllEnums<LastName>().Select(l =>
+                            GetAllEnums<Shoes>().Select(s =>
+                                GetAllEnums<Jacket>().Select(j =>
+                                    new Person { FirstName = f, LastName = l, Shoes = s, Jacket = j }))))
+                    .SelectMany(x => x)
+                    .SelectMany(s => s)
+                    .SelectMany(s => s)
+                    .Where(isValid);
+
+
+            T[] GetAllEnums<T>()
             {
-
-                Person p= new Person
-                {
-                    FirstName = firstName,
-                    LastName = lastName,
-                    Jacket = jacket,
-                    Shoes = shoes
-                };
-
-                if (isValid(p))
-                {
-                    yield return p;
-                }
+                return Enum.GetValues(typeof(T)).Cast<T>().ToArray();
             }
         }
 

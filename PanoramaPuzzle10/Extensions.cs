@@ -9,6 +9,7 @@
 
 namespace PanoramaPuzzle10
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
 
@@ -20,6 +21,18 @@ namespace PanoramaPuzzle10
             return k == 0 ? new[] { new T[0] } :
                 el.SelectMany((e, i) =>
                     el.Skip(i + 1).Combinations(k - 1).Select(c => (new[] {e}).Concat(c)));
+        }
+
+        public static void ForEach<T>(this IEnumerable<T> elements, Action<T> action, Action prefix = null, Action postfix = null)
+        {
+            prefix?.Invoke();
+
+            foreach (T element in elements)
+            {
+                action(element);
+            }
+
+            postfix?.Invoke();
         }
     }
 }

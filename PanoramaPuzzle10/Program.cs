@@ -9,40 +9,26 @@
         static void Main(string[] args)
         {
             IRule rules = new Rules();
-            List<Person> selected = Person.GetAllCombinations(rules.IsValid).ToList();
-            var all = selected.Combinations(4);
-            foreach (var combination in all)
-            {
-                ISet<Person> people = combination.ToHashSet();
-                if (IsValid(people))
-                {
-                    foreach (Person p in people)
-                    {
-                        Console.WriteLine(p);
-                    }
-
-                    Console.WriteLine();
-                }
-            }
+            IEnumerable<Person> selected = Person.AllCombinations(rules.IsValid);
+            selected
+                .Combinations(4)
+                .Where(IsValid)
+                .SelectMany(s =>s)
+                .ForEach(Console.WriteLine, null, Console.WriteLine);
         }
-
 
         // This filters out any putative solution where two people
         // share an attribute, like two people each with black shoes
-        static bool IsValid(ISet<Person> people)
+        static bool IsValid(IEnumerable<Person> ip)
         {
-            if (people.Count != 4)
-            {
-                return false;
-            }
+            ISet<Person> people = ip.ToHashSet();
 
-            // first check we have unique combination of all attributes
-            int total = people.Select(p => p.FirstName).ToHashSet().Count();
-            total += people.Select(p => p.LastName).ToHashSet().Count();
-            total += people.Select(p => p.Jacket).ToHashSet().Count();
-            total += people.Select(p => p.Shoes).ToHashSet().Count();
-
-            return total == 16;
+            // check we have unique combination of all attributes
+            return people.Count == 4
+                && people.Select(p => p.FirstName).ToHashSet().Count() == 4
+                && people.Select(p => p.LastName).ToHashSet().Count() == 4
+                && people.Select(p => p.Jacket).ToHashSet().Count() == 4
+                && people.Select(p => p.Shoes).ToHashSet().Count() == 4;
         }
     }
 }
