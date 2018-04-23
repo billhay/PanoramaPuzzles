@@ -23,16 +23,16 @@ namespace PanoramaPuzzle10
                     el.Skip(i + 1).Combinations(k - 1).Select(c => (new[] {e}).Concat(c)));
         }
 
-        public static void ForEach<T>(this IEnumerable<T> elements, Action<T> action, Action prefix = null, Action postfix = null)
+        public static void ForEach<T>(this IEnumerable<T> elements, Action<T> action, Action prelude = null, Action postlude = null)
         {
-            prefix?.Invoke();
+            prelude?.Invoke();
 
             foreach (T element in elements)
             {
                 action(element);
             }
 
-            postfix?.Invoke();
+            postlude?.Invoke();
         }
     }
 }

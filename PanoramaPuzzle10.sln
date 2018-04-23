@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2011
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanoramaPuzzle10", "PanoramaPuzzle10\PanoramaPuzzle10.csproj", "{88F8F5B6-5C58-45D2-97E5-03E62C01E122}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanoramaPuzzle10", "PanoramaPuzzle10\PanoramaPuzzle10.csproj", "{88F8F5B6-5C58-45D2-97E5-03E62C01E122}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanoramaPuzzle11", "PanoramaPuzzle11\PanoramaPuzzle11.csproj", "{CF91EA2F-1022-4F60-9F5E-A78954B4D96E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{88F8F5B6-5C58-45D2-97E5-03E62C01E122}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88F8F5B6-5C58-45D2-97E5-03E62C01E122}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88F8F5B6-5C58-45D2-97E5-03E62C01E122}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF91EA2F-1022-4F60-9F5E-A78954B4D96E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF91EA2F-1022-4F60-9F5E-A78954B4D96E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF91EA2F-1022-4F60-9F5E-A78954B4D96E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF91EA2F-1022-4F60-9F5E-A78954B4D96E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
