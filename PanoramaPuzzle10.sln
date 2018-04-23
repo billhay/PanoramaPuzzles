@@ -7,9 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanoramaPuzzle10", "Panoram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanoramaPuzzle11", "PanoramaPuzzle11\PanoramaPuzzle11.csproj", "{CF91EA2F-1022-4F60-9F5E-A78954B4D96E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanoramaPuzzleLib", "PanoramaPuzzleLib\PanoramaPuzzleLib.csproj", "{2352DF65-C7C1-49D0-B578-FE72793CBFE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanoramaPuzzleLib", "PanoramaPuzzleLib\PanoramaPuzzleLib.csproj", "{2352DF65-C7C1-49D0-B578-FE72793CBFE9}"
 EndProject
 Global
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -33,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32F5F7F0-479A-4CE3-8A8C-D3D80D4879D5}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

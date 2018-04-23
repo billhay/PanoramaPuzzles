@@ -3,32 +3,21 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using PanoramaPuzzleLib;
 
     public class Program
     {
         static void Main(string[] args)
         {
-            IRule rules = new Rules();
-            IEnumerable<Person> selected = Person.AllCombinations(rules.IsValid);
-            selected
-                .Combinations(4)
-                .Where(IsValid)
-                .SelectMany(s =>s)
-                .ForEach(Console.WriteLine, null, Console.WriteLine);
-        }
+            IEnumerable<Person> all = Person.AllCombinations(Rules.IsValid);
+            var outFile = Console.Out; // File.CreateText("GameResults.txt");
 
-        // This filters out any putative solution where two people
-        // share an attribute, like two people each with black shoes
-        static bool IsValid(IEnumerable<Person> ip)
-        {
-            ISet<Person> people = ip.ToHashSet();
+            all
+                .AllCombinations(getPartionKey: x => x.FirstName)
+                .Where(Person.IsValid)
+                .ForEach(p => p.ForEach(outFile.WriteLine, null, outFile.WriteLine));
 
-            // check we have unique combination of all attributes
-            return people.Count == 4
-                && people.Select(p => p.FirstName).ToHashSet().Count() == 4
-                && people.Select(p => p.LastName).ToHashSet().Count() == 4
-                && people.Select(p => p.Jacket).ToHashSet().Count() == 4
-                && people.Select(p => p.Shoes).ToHashSet().Count() == 4;
+            outFile.Close();
         }
     }
 }

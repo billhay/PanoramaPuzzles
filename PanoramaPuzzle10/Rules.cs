@@ -12,9 +12,9 @@ namespace PanoramaPuzzle10
     using System;
     using System.Linq;
 
-    public class Rules : IRule
+    public class Rules
     {
-        private readonly Func<Person, bool>[] rules = 
+        private static readonly Func<Person, bool>[] PuzzleRules = 
         {
             // rule 1
             (p => (p.FirstName == FirstName.Amanda && p.Jacket == Jacket.Red)),
@@ -48,14 +48,14 @@ namespace PanoramaPuzzle10
             (p => (p.FirstName == FirstName.Belinda && p.Shoes == Shoes.Black)),
         };
 
-        // for convenience the rules are backwards
+        // for convenience the PuzzleRules are backwards
         // if any of the attributes for a person succeeds
         // then that combination is invalid. For example a
         // a combination which had first name 'Clark' and 
         // shoes 'White' will cause this funtion to return 'false'
-        public bool IsValid(Person person)
+        public static bool IsValid(Person person)
         {
-            return !this.rules.Any(rule => rule(person));
+            return !PuzzleRules.Any(rule => rule(person));
         }
     }
 }

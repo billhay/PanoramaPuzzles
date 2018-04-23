@@ -11,6 +11,7 @@ namespace PanoramaPuzzle11
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using PanoramaPuzzleLib;
 
     public class Person
     {
@@ -34,21 +35,15 @@ namespace PanoramaPuzzle11
         internal static IEnumerable<Person> AllCombinations(Func<Person, bool> isValid)
         {
             return
-                GetAllEnums<Names>().Select(n =>
-                        GetAllEnums<Vegetable>().Select(v =>
-                            GetAllEnums<Cheese>().Select(c =>
-                                GetAllEnums<Meat>().Select(m =>
+                Helper.GetAllEnums<Names>().Select(n =>
+                        Helper.GetAllEnums<Vegetable>().Select(v =>
+                            Helper.GetAllEnums<Cheese>().Select(c =>
+                                Helper.GetAllEnums<Meat>().Select(m =>
                                     new Person { Name = n, Vegetable = v, Cheese = c, Meat = m }))))
                     .SelectMany(x => x)
                     .SelectMany(s => s)
                     .SelectMany(s => s)
                     .Where(isValid);
-
-
-            IReadOnlyCollection<T> GetAllEnums<T>()
-            {
-                return Enum.GetValues(typeof(T)).Cast<T>().ToList();
-            }
         }
 
         // This filters out any putative solution where two people
@@ -58,19 +53,23 @@ namespace PanoramaPuzzle11
             ISet<Person> people = ip.ToHashSet();
 
             // check we have unique combination of all attributes
-            int count1 = people.Count;
-            int count2 = people.Select(p => p.Name).ToHashSet().Count();
-            int count3 = people.Select(p => p.Vegetable).ToHashSet().Count();
-            int count4 = people.Select(p => p.Cheese).ToHashSet().Count();
-            int count5 = people.Select(p => p.Meat).ToHashSet().Count();
 
-            if (count1 == PeopleCount && count2 == PeopleCount && count3 == ItemCount && count4 == ItemCount &&
-                count5 == ItemCount)
+            HashSet<Names> nameSet = new HashSet<Names>();
+            HashSet<Vegetable> vegatableSet = new HashSet<Vegetable>();
+            HashSet<Cheese> cheeseSet = new HashSet<Cheese>();
+            HashSet<Meat> meatSet = new HashSet<Meat>();
+            foreach (Person p in ip)
             {
-                return true;
+                nameSet.Add(p.Name);
+                vegatableSet.Add(p.Vegetable);
+                cheeseSet.Add(p.Cheese);
+                meatSet.Add(p.Meat);
             }
-
-            return false;
+            return
+                nameSet.Count() == PeopleCount
+                && vegatableSet.Count() == ItemCount
+                && cheeseSet.Count() == ItemCount
+                && meatSet.Count() == ItemCount;
         }
 
         public override string ToString()
