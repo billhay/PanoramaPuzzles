@@ -6,15 +6,14 @@
 //  Defines the Rules.cs type.
 //  </summary>
 //  --------------------------------------------------------------------------------------------------------------------
-
 namespace PanoramaPuzzle11
 {
     using System;
     using System.Linq;
 
-    public class Rules : IRule
+    internal static class Rules 
     {
-        private readonly Func<Person, bool>[] rules = 
+        private static readonly Func<Person, bool>[] PuzzleRules = 
         {
             // rule 1
             p => p.Name != Names.John && p.Vegetable == Vegetable.Brocolli,
@@ -51,9 +50,9 @@ namespace PanoramaPuzzle11
         };
 
 
-        public bool Valid(Person p, int ruleNumber)
+        internal static bool Valid(Person p, int ruleNumber)
         {
-            bool b = this.rules[ruleNumber](p);
+            bool b = PuzzleRules[ruleNumber](p);
             return b;
         }
         // for convenience the rules are backwards
@@ -61,9 +60,9 @@ namespace PanoramaPuzzle11
         // then that combination is invalid. For example a
         // a combination which had first name 'Clark' and 
         // shoes 'White' will cause this funtion to return 'false'
-        public bool IsValid(Person person)
+        internal static bool IsValid(Person person)
         {
-            return !this.rules.Any(rule => rule(person));
+            return !PuzzleRules.Any(rule => rule(person));
         }
     }
 }

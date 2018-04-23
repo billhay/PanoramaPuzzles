@@ -7,10 +7,10 @@
 //  </summary>
 //  --------------------------------------------------------------------------------------------------------------------
 
-namespace PanoramaPuzzle11
+namespace PanoramaPuzzleLib
 {
-    public interface IRule
+    public interface IRule<T>
     {
-        bool IsValid(Person person);
+        bool IsValid(T person);
     }
 }
