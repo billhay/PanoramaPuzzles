@@ -9,7 +9,7 @@
 
 namespace PanoramaPuzzle11
 {
-    public enum Names
+    public enum Name
     {
         David,
         John,

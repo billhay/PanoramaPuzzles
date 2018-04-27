@@ -17,29 +17,46 @@ namespace PanoramaPuzzle11
     {
         private const int PeopleCount = 5;
 
-        private const int ItemCount = 5;
+        private const ulong One = 1ul;
 
-        internal Names Name { get; set; }
-
-        internal Vegetable Vegetable { get; set; }
-
-        internal Cheese Cheese { get; set; }
-
-        internal Meat Meat { get; set; }
-
-        internal Gender Gender
+        public Person(Name name, Vegetable vegetable, Cheese cheese, Meat meat)
         {
-            get { return this.Name == Names.David || this.Name == Names.John ? Gender.Male : Gender.Female; }
+            this.Name = name;
+            this.Vegetable = vegetable;
+            this.Cheese = cheese;
+            this.Meat = meat;
+
+            this.Gender = this.Name == Name.David || this.Name == Name.John ? Gender.Male : Gender.Female;
+
+            this.ThumbPrint = 
+                One << (int) this.Name + 48
+              | One << (int) this.Vegetable + 32
+              | One << (int) this.Cheese + 16
+              | One << (int) this.Meat;
         }
 
-        internal static IEnumerable<Person> AllCombinations(Func<Person, bool> isValid)
+        private const int ItemCount = 5;
+
+        public Name Name { get; }
+
+        public Vegetable Vegetable { get; }
+
+        public Cheese Cheese { get; }
+
+        public Meat Meat { get; }
+
+        public ulong ThumbPrint { get; }
+
+        public Gender Gender { get; }
+
+        public static IEnumerable<Person> AllCombinations(Func<Person, bool> isValid)
         {
             return
-                Helper.GetAllEnums<Names>().Select(n =>
+                Helper.GetAllEnums<Name>().Select(n =>
                         Helper.GetAllEnums<Vegetable>().Select(v =>
                             Helper.GetAllEnums<Cheese>().Select(c =>
                                 Helper.GetAllEnums<Meat>().Select(m =>
-                                    new Person { Name = n, Vegetable = v, Cheese = c, Meat = m }))))
+                                    new Person (n, v,  c,  m )))))
                     .SelectMany(x => x)
                     .SelectMany(s => s)
                     .SelectMany(s => s)
@@ -48,33 +65,20 @@ namespace PanoramaPuzzle11
 
         // This filters out any putative solution where two people
         // share an attribute, like two people each with black shoes
-        internal static bool IsValid(IEnumerable<Person> ip)
+        public static bool IsValid(IEnumerable<Person> ip)
         {
-            ISet<Person> people = ip.ToHashSet();
-
-            // check we have unique combination of all attributes
-
-            HashSet<Names> nameSet = new HashSet<Names>();
-            HashSet<Vegetable> vegatableSet = new HashSet<Vegetable>();
-            HashSet<Cheese> cheeseSet = new HashSet<Cheese>();
-            HashSet<Meat> meatSet = new HashSet<Meat>();
-            foreach (Person p in ip)
-            {
-                nameSet.Add(p.Name);
-                vegatableSet.Add(p.Vegetable);
-                cheeseSet.Add(p.Cheese);
-                meatSet.Add(p.Meat);
-            }
-            return
-                nameSet.Count() == PeopleCount
-                && vegatableSet.Count() == ItemCount
-                && cheeseSet.Count() == ItemCount
-                && meatSet.Count() == ItemCount;
+            return ip.ToList().AreElementsUnique(Distinct);
         }
 
         public override string ToString()
         {
             return $"{this.Name} {this.Vegetable} {this.Cheese} {this.Meat}";
+        }
+
+        public static bool Distinct(Person p1, Person p2)
+        {
+            ulong temp = p1.ThumbPrint & p2.ThumbPrint;
+            return temp == 0;
         }
     }
 }

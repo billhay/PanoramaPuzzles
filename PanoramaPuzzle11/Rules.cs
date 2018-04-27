@@ -16,8 +16,8 @@ namespace PanoramaPuzzle11
         private static readonly Func<Person, bool>[] PuzzleRules = 
         {
             // rule 1
-            p => p.Name != Names.John && p.Vegetable == Vegetable.Brocolli,
-            p => p.Name == Names.John && p.Cheese == Cheese.Havarti,
+            p => p.Name != Name.John && p.Vegetable == Vegetable.Brocolli,
+            p => p.Name == Name.John && p.Cheese == Cheese.Havarti,
 
             // rule 2
             p => p.Gender == Gender.Male && p.Vegetable == Vegetable.Carrots,
@@ -38,15 +38,15 @@ namespace PanoramaPuzzle11
 
             // rule 5
             p => p.Gender == Gender.Male && p.Cheese == Cheese.Gorgonzola,
-            p => p.Name == Names.Doris && p.Cheese == Cheese.Gorgonzola,
+            p => p.Name == Name.Doris && p.Cheese == Cheese.Gorgonzola,
 
             // rule 6
-            p => p.Name == Names.Ruth && p.Meat == Meat.GroundBeef,
+            p => p.Name == Name.Ruth && p.Meat == Meat.GroundBeef,
             p => p.Meat == Meat.GroundBeef && p.Cheese == Cheese.Gouda,
             p => p.Gender == Gender.Male && p.Meat == Meat.GroundBeef,
 
             // rule 7
-            p => p.Name == Names.Betty && p.Vegetable != Vegetable.Cucumber
+            p => p.Name == Name.Betty && p.Vegetable != Vegetable.Cucumber
         };
 
 

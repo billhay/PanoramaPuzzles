@@ -9,10 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanoramaPuzzle11", "Panoram
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PanoramaPuzzleLib", "PanoramaPuzzleLib\PanoramaPuzzleLib.csproj", "{2352DF65-C7C1-49D0-B578-FE72793CBFE9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanoramaPuzzle11UnitTests", "PanoramaPuzzle11UnitTests\PanoramaPuzzle11UnitTests.csproj", "{277D5E8F-178A-417C-91C6-6176AD79E232}"
+EndProject
 Global
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -30,12 +29,19 @@ Global
 		{2352DF65-C7C1-49D0-B578-FE72793CBFE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2352DF65-C7C1-49D0-B578-FE72793CBFE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2352DF65-C7C1-49D0-B578-FE72793CBFE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{277D5E8F-178A-417C-91C6-6176AD79E232}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{277D5E8F-178A-417C-91C6-6176AD79E232}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{277D5E8F-178A-417C-91C6-6176AD79E232}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{277D5E8F-178A-417C-91C6-6176AD79E232}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32F5F7F0-479A-4CE3-8A8C-D3D80D4879D5}
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 	GlobalSection(Performance) = preSolution
 		HasPerformanceSessions = true

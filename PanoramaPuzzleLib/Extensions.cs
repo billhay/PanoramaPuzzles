@@ -73,5 +73,31 @@ namespace PanoramaPuzzleLib
                 return newListOfLists;
             }
         }
+
+        public static bool AreElementsUnique<T>(this IReadOnlyList<T> list)
+        {
+            return list.AreElementsUnique(Compare);
+
+            bool Compare(T a, T b)
+            {
+                return a.Equals(b);
+            }
+        }
+
+        public static bool AreElementsUnique<T>(this IReadOnlyList<T> list, Func<T,T,bool> comparitor)
+        {
+            for (int i = 0;  i < list.Count - 1; i++)
+            {
+                for (int j = i + 1; j < list.Count; j++)
+                {
+                    if (!comparitor(list[i], list[j]))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
     }
 }
